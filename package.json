@@ -1,0 +1,26 @@
+{
+  "name": "dhl-express",
+  "version": "0.0.1",
+  "description": "DHL Express api client",
+  "author": "Alex Shalaiev",
+  "keywords": [
+    "typescript",
+    "DHL",
+    "DHL-Api",
+    "DHL-Express-Api-client"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --outDir dist/",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "typescript": "^4.6.4"
+  }
+}
