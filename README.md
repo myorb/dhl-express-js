@@ -1,45 +1,113 @@
-## @
+# DHL Express - MyDHL API js client
+* v2.4.0
+* Division: DHL Express
 
-This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
+This is TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). 
 
-Environment
-* Node.js
-* Webpack
-* Browserify
+Exampel usage:
 
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
+```typescript
+import type {
+  SupermodelIoLogisticsExpressAddressCreateShipmentRequest,
+  SupermodelIoLogisticsExpressContact,
+  SupermodelIoLogisticsExpressCreateShipmentRequest,
+  SupermodelIoLogisticsExpressCreateShipmentResponse,
+} from '@myorb/dhl-express';
+import {
+  ShipmentApi,
+  SupermodelIoLogisticsExpressCreateShipmentRequestContentIncotermEnum,
+  SupermodelIoLogisticsExpressCreateShipmentRequestContentUnitOfMeasurementEnum,
+} from '@myorb/dhl-express';
 
-Module system
-* CommonJS
-* ES6 module system
+export class DHLService {
+  static async createShipping(req: SomeInput): Promise<SupermodelIoLogisticsExpressCreateShipmentResponse> {
+    const config = {
+      basePath?: string;
+      username?: string;
+      password?: string;
+      apiKey?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
+      accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
+    };
+    const dhlApi = new ShipmentApi(config);
+    const body: SupermodelIoLogisticsExpressCreateShipmentRequest = {
+      plannedShippingDateAndTime: '',
+      pickup: {
+        isRequested: true,
+      },
+      productCode: '',
+      accounts: [],
+      customerDetails: {
+        shipperDetails: {
+          postalAddress: {
+            postalCode: '8888',
+            cityName: 'Berlin',
+            countryCode: 'DE',
+            provinceCode: '',
+            addressLine1: 'Alexander Platz 1',
+            addressLine2: '',
+            addressLine3: '',
+            provinceName: '',
+            countryName: 'Germany',
+          },
+          contactInformation: {
+            phone: '0123456789',
+            companyName: 'MyOrb',
+            fullName: 'MyOrb',
+          },
+        },
+        receiverDetails: {
+          postalAddress: {
+            postalCode: '8888',
+            cityName: 'Munchen',
+            countryCode: 'DE',
+            provinceCode: '',
+            addressLine1: 'Marienplatz 1',
+            addressLine2: '',
+            addressLine3: '',
+            provinceName: '',
+            countryName: 'Germany',
+          },
+          contactInformation: {
+            phone: '0123456789',
+            companyName: 'MyOrb',
+            fullName: 'MyOrb',
+          },
+        },
+      },
+      content: {
+        isCustomsDeclarable: false,
+        description: 'DOCUMENTS',
+        packages: [
+          {
+            weight: 0.3,
+            dimensions: {
+              length: 32,
+              width: 23.8,
+              height: 1,
+            },
+          },
+        ],
+        incoterm: SupermodelIoLogisticsExpressCreateShipmentRequestContentIncotermEnum.DAP,
+        unitOfMeasurement: SupermodelIoLogisticsExpressCreateShipmentRequestContentUnitOfMeasurementEnum.Metric,
+      },
+    };
+    const shipment = await dhlApi.expApiShipments(body);
+    return shipment.data;
+  }
+}
 
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
-
-### Building
-
-To build and compile the typescript sources to javascript use:
 ```
-npm install
-npm run build
-```
 
-### Publishing
+## Configuration
 
-First build the package then run ```npm publish```
+| Name             | Type  | Default                                 | Description                                                    |
+| ---------------- | ----- | --------------------------------------- | -------------------------------------------------------------- |
+| **basePath** | `str` | `https://express.api.dhl.com/mydhlapi/` | The base URL that is going to be used for DHL API connections. |
+| **username** | `str` | `None`                                  | The DHL API username to be used for authentication             |
+| **password** | `str` | `None`                                  | The DHL API password to be used for authentication             |
+| **apiKey**   | `str` | `None`                                  | Can be used for authentication             |
+| **accessToken** | `str` | `None`                                  | Can be used for authentication             |
 
-### Consuming
+## License
 
-navigate to the folder of your consuming project and run one of the following commands.
-
-_published:_
-
-```
-npm install @ --save
-```
-
-_unPublished (not recommended):_
-
-```
-npm install PATH_TO_GENERATED_PACKAGE --save
+DHL API for Javascript is currently licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/).
