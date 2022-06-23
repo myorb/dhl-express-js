@@ -1,6 +1,6 @@
 {
   "name": "@myorb/dhl-express",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "DHL Express api client",
   "author": "Alex Shalaiev",
   "keywords": [
