@@ -1,11 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { BaseAPI } from "./base";
-import { Configuration } from "./configuration";
-import * as api from "./api"
-import { SupermodelIoLogisticsExpressCreateShipmentRequest } from "./models";
-
 /**
  * DHL Express APIs (MyDHL API)
  * Welcome to the official DHL Express APIs (MyDHL API) below are the published API Documentation to fulfill your shipping needs with DHL Express.       Please follow the process described [here](https://developer.dhl.com/api-reference/dhl-express-mydhl-api#get-started-section/user-guide--get-access) to request access to the DHL Express - MyDHL API services    In case you already have DHL Express - MyDHL API Service credentials please ensure to use the endpoints/environments listed  [here](https://developer.dhl.com/api-reference/dhl-express-mydhl-api#get-started-section/user-guide--environments) 
@@ -20,31 +15,3 @@ import { SupermodelIoLogisticsExpressCreateShipmentRequest } from "./models";
 export * from "./api";
 export * from "./configuration";
 export * from "./models";
-
-
-// const config = new Configuration({
-//     username: "",
-//     password: "",
-//     basePath: "https://api.dhl.com/express/v2/rest"
-// })
-// // const api = new BaseAPI(config)
-// // let instance = new api.IdentifierApi(config)
-
-// // const resp = api.shipments.createShipment({
-
-// let dhlApi: api.ShipmentApi = new api.ShipmentApi(config)
-
-// const body: SupermodelIoLogisticsExpressCreateShipmentRequest = {
-//     pickup: {
-//         address: {
-//             country: "US",
-//             postalCode: "90210",
-//             city: "Beverly Hills",
-//             streetLines: ["123 Main St"],
-//             state: "CA",
-//             name: "John Doe"
-//         }
-//     }
-// }  
-
-// const resp = dhlApi.expApiShipments(body)
